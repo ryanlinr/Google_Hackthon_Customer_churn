@@ -26,7 +26,7 @@ You have been given access to three raw datasets. Warning: These datasets have r
 
 ### The Deliverable
 
-Your team has 8 minutes to present a slide deck to the COO. Your presentation must tell a coherent story that leads to a recommendation.
+Your team has 5 minutes to present a slide deck to the COO. With 5 minutes following Q&A
 
 While you are submitting one deck, your narrative must demonstrate that you have navigated the Analytics Project Lifecycle taught in this course:
 
