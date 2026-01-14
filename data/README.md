@@ -1,29 +1,62 @@
 # Data Directory
 
-This directory is for storing datasets used in the analysis.
+This directory contains the datasets used in the customer churn analysis for BizGrow.
 
-## Note on Data Files
+## Dataset Overview
 
-Due to file size limitations and privacy concerns, large data files are excluded from git tracking (see `.gitignore`).
+The following datasets are available for analysis:
 
-## Structure
+### dataset1.csv - SalesForce Export
+Contains customer contract and demographic information:
+- Contract dates
+- Company size
+- Industry classification
 
-You can organize your data as:
-- `raw/` - Original, unmodified data files
-- `processed/` - Cleaned and processed data files
-- `external/` - Data from external sources
+**Data Quality Note:** The industry field is approximately 30% empty. This missing data must be addressed in the analysis.
 
-## Data Description
+### dataset2a for q1 q2.csv - Usage Logs (Q1-Q2)
+Daily login activity for customers during Q1 and Q2.
 
-<!-- Add descriptions of your datasets here -->
-<!-- Example:
-- `customer_data.csv` - Customer demographic and usage data
-- `churn_labels.csv` - Customer churn labels
--->
+**Data Quality Note:** Standard usage patterns observed during this period.
 
-## Accessing Data
+### dataset2b for q3 q4.csv - Usage Logs (Q3-Q4)
+Daily login activity for customers during Q3 and Q4.
 
-If you're setting up this project:
-1. Contact the team lead for access to the datasets
-2. Place data files in the appropriate subdirectory
-3. Update this README with data descriptions
+**Data Quality Note:** European server logs are corrupted for September. Analysis must account for this data quality issue.
+
+### dataset3.csv - Support Tickets
+Unstructured text of customer complaints and support interactions.
+- Contains both sales-related and product-related issues
+- Requires text analysis to categorize and extract insights
+
+## Data Preprocessing Considerations
+
+When working with these datasets, consider the following:
+
+1. **Missing Industry Data:** Approximately 30% of records in the SalesForce export lack industry classification. Consider imputation strategies or separate analysis of records with/without this field.
+
+2. **Corrupted EU Logs:** September usage data from European servers is unreliable. Either exclude this data or clearly flag it in visualizations and statistical analyses.
+
+3. **Unstructured Support Tickets:** Text data requires cleaning, categorization, and potentially sentiment analysis or topic modeling.
+
+4. **Data Integration:** Cross-referencing between datasets may require careful key matching and handling of temporal misalignments.
+
+## Usage
+
+All analysis scripts should load data from this directory. Example:
+
+```python
+import pandas as pd
+
+# Load SalesForce data
+salesforce_df = pd.read_csv('data/dataset1.csv')
+
+# Load Q1-Q2 usage logs
+usage_q1q2_df = pd.read_csv('data/dataset2a for q1 q2.csv')
+
+# Load Q3-Q4 usage logs
+usage_q3q4_df = pd.read_csv('data/dataset2b for q3 q4.csv')
+
+# Load support tickets
+support_df = pd.read_csv('data/dataset3.csv')
+```
